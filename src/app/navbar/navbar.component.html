@@ -1,0 +1,15 @@
+<mat-toolbar>
+  <mat-toolbar-row>
+    <div style="position:absolute; left: 0">
+      <a mat-button routerLink="/">
+        <img alt="Logo" src="favicon.ico">
+      </a>
+
+      <a *ngIf="!isLoggedIn()" mat-button routerLink="/login" routerLinkActive="active">Login</a>
+      <a *ngIf="!isLoggedIn()" mat-button routerLink="/register" routerLinkActive="active">Register</a>
+      <a *ngIf="isLoggedIn()" mat-button (click)="logout()">Logout</a>
+    </div>
+
+  </mat-toolbar-row>
+
+</mat-toolbar>

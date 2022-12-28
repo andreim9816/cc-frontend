@@ -1,0 +1,18 @@
+<div class="container">
+  <div class="child outline-box">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <div class="row no-gutters">
+        <mat-form-field class="flex-item">
+          <input matInput formControlName="username" placeholder="Username">
+        </mat-form-field>
+      </div>
+      <div class="row no-gutters">
+        <mat-form-field class="flex-item">
+          <input matInput type="password" formControlName="password" placeholder="Password">
+        </mat-form-field>
+      </div>
+      <button class="btn btn-primary" type="submit">Save</button>
+    </form>
+  </div>
+
+</div>
