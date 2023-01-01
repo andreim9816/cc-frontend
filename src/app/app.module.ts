@@ -21,6 +21,9 @@ import {HttpRequestInterceptor} from "./services/HttpRequestInterceptor";
 import {NavbarComponent} from "./navbar/navbar.component";
 import {LoginComponent} from "./login/login.component";
 import {RegisterComponent} from "./register/register.component";
+import {AccountsComponent} from "./accounts/accounts.component";
+import {CreateAccountDialogComponent} from "./accounts/create-account-dialog/create-account-dialog.component";
+import {CreatePaymentComponent} from "./payment/create-payment/create-payment.component";
 
 @NgModule({
   bootstrap: [AppComponent],
@@ -28,6 +31,9 @@ import {RegisterComponent} from "./register/register.component";
     AppComponent,
     NavbarComponent,
     LoginComponent,
+    AccountsComponent,
+    CreateAccountDialogComponent,
+    CreatePaymentComponent,
     RegisterComponent
   ],
   imports: [

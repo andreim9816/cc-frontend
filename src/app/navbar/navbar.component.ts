@@ -25,6 +25,14 @@ export class NavbarComponent {
               private router: Router) {
   }
 
+  isLoggedIn(): boolean {
+    return this.storageService.isLoggedIn();
+  }
+
+  computeName(): string {
+    return this.storageService.getUser().username;
+  }
+
   logout(): void {
     this.authService.logout().subscribe(() => {
       this.storageService.clearUser();
