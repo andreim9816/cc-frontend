@@ -1,18 +1,17 @@
-<div class="container">
-  <div class="child outline-box">
-    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-      <div class="row no-gutters">
-        <mat-form-field class="flex-item">
-          <input matInput formControlName="username" placeholder="Username">
-        </mat-form-field>
-      </div>
-      <div class="row no-gutters">
-        <mat-form-field class="flex-item">
-          <input matInput type="password" formControlName="password" placeholder="Password">
-        </mat-form-field>
-      </div>
-      <button class="btn btn-primary" type="submit">Save</button>
-    </form>
-  </div>
-
+<div class="container default-padding outline-box">
+  <h2>Welcome!</h2>
+  <br>
+  <form (ngSubmit)="onSubmit()" [formGroup]="loginForm">
+    <div class="no-gutters">
+      <mat-form-field>
+        <input formControlName="username" matInput placeholder="Username">
+      </mat-form-field>
+    </div>
+    <div class="row no-gutters">
+      <mat-form-field>
+        <input formControlName="password" matInput placeholder="Password" type="password">
+      </mat-form-field>
+    </div>
+    <button class="btn btn-primary" type="submit">Login</button>
+  </form>
 </div>
