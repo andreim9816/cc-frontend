@@ -24,6 +24,8 @@ import {RegisterComponent} from "./register/register.component";
 import {AccountsComponent} from "./accounts/accounts.component";
 import {CreateAccountDialogComponent} from "./accounts/create-account-dialog/create-account-dialog.component";
 import {CreatePaymentComponent} from "./payment/create-payment/create-payment.component";
+import {MatDividerModule} from "@angular/material/divider";
+import {ErrorDialogComponent} from './util/error-dialog/error-dialog.component';
 
 @NgModule({
   bootstrap: [AppComponent],
@@ -34,7 +36,8 @@ import {CreatePaymentComponent} from "./payment/create-payment/create-payment.co
     AccountsComponent,
     CreateAccountDialogComponent,
     CreatePaymentComponent,
-    RegisterComponent
+    RegisterComponent,
+    ErrorDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -52,6 +55,7 @@ import {CreatePaymentComponent} from "./payment/create-payment/create-payment.co
     MatDialogModule,
     MatInputModule,
     MatRippleModule,
+    MatDividerModule,
     MatTableModule,
     MatFormFieldModule,
     MatButtonModule,

@@ -1,12 +1,15 @@
 .container {
-  margin-top: 8px;
-  justify-content: center;
-  display: flex;
-  flex-direction: column;
+  width: 540px;
 }
 
 .row-1 {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+}
+
+.column-1 {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
 }

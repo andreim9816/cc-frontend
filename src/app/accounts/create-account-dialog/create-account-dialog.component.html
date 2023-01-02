@@ -1,18 +1,20 @@
 <div class="container default-padding">
-  <div class="col1">
-    <h2>Create a new bank account</h2>
-    <p>Please choose the currency</p>
-  </div>
+  <h2>Create a new bank account</h2>
+  <p>Please choose the currency</p>
 
-  <form [formGroup]="accountForm" (ngSubmit)="onSubmit()">
-    <mat-form-field appearance="fill">
-      <mat-label>Select an option</mat-label>
-      <mat-select formControlName="currency" [(value)]="selected">
-        <mat-option *ngFor="let option of availableOptions" [value]="option">
-          {{option}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-    <button class="btn btn-primary" type="submit">Save</button>
+  <form (ngSubmit)="onSubmit()" [formGroup]="accountForm">
+    <div class="container">
+
+      <mat-form-field appearance="fill">
+        <mat-label>Select an option</mat-label>
+        <mat-select [(value)]="selected" formControlName="currency">
+          <mat-option *ngFor="let option of availableOptions" [value]="option">
+            {{option}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <button class="btn btn-primary" type="submit">Save</button>
+    </div>
+
   </form>
 </div>

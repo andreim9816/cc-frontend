@@ -13,14 +13,6 @@ body {
   padding: 32px 32px 32px 32px
 }
 
-.container {
-  margin-top: 8px;
-  width: 100%;
-  justify-content: center;
-  display: flex;
-  flex-direction: column;
-}
-
 .outline-box {
   background-color: #fff;
   background-clip: border-box;
