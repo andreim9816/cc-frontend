@@ -1,42 +1,36 @@
-<div class="container">
-  <div class="child outline-box">
-    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+<div class="container outline-box default-padding">
+  <h2>Register!</h2>
+  <br>
 
-      <div class="col1">
-        <mat-form-field class="flex-item">
-          <input matInput formControlName="username" placeholder="Username">
+  <form (ngSubmit)="onSubmit()" [formGroup]="registerForm">
+    <div class="row-1">
+      <div class="column-1">
+        <mat-form-field>
+          <input formControlName="userName" matInput placeholder="Username" type="text">
         </mat-form-field>
-      </div>
-      <div class="col1">
-        <mat-form-field class="flex-item">
-          <input matInput type="email" formControlName="email" placeholder="Email">
+        <mat-form-field>
+          <input formControlName="email" matInput placeholder="Email" type="text">
         </mat-form-field>
-      </div>
-      <div class="col1">
-        <mat-form-field class="flex-item">
-          <input matInput type="password" formControlName="password" placeholder="Password">
+        <mat-form-field>
+          <input formControlName="password" matInput placeholder="Password" type="password">
         </mat-form-field>
       </div>
 
-      <div class="col2">
-        <mat-form-field class="flex-item">
-          <input matInput formControlName="firstname" placeholder="First Name">
+      <mat-divider [vertical]="true" class="column-1"></mat-divider>
+
+      <div class="column-1">
+        <mat-form-field>
+          <input formControlName="firstName" matInput placeholder="First Name" type="text">
+        </mat-form-field>
+        <mat-form-field>
+          <input formControlName="lastName" matInput placeholder="Last Name" type="text">
+        </mat-form-field>
+        <mat-form-field>
+          <input formControlName="phoneNumber" matInput placeholder="Phone Number" type="text">
         </mat-form-field>
       </div>
-      <div class="col2">
-        <mat-form-field class="flex-item">
-          <input matInput type="text" formControlName="lastname" placeholder="Last Name">
-        </mat-form-field>
-      </div>
-      <div class="col2">
-        <mat-form-field class="flex-item">
-          <input matInput type="text" formControlName="phoneNumber" placeholder="Phone number">
-        </mat-form-field>
-      </div>
+    </div>
 
-      <button class="btn btn-primary" type="submit">Save</button>
-
-    </form>
-  </div>
-
+    <button class="btn btn-primary" type="submit">Save</button>
+  </form>
 </div>

@@ -1,33 +1,33 @@
 <div class="container">
   <div>
-    <button *ngIf="shouldDisplay()" (click)="openDialogNewAccount()" class="btn btn-primary">
+    <button (click)="openDialogNewAccount()" *ngIf="shouldDisplay()" class="btn btn-primary">
       Launch account creation
     </button>
 
-    <mat-table #table class="outline-box" [dataSource]="accountsDataSource"
-               style="margin-top: 32px">
+    <div class="outline-box" style="margin-top: 32px">
 
-      <ng-container matColumnDef="id">
-        <mat-header-cell *matHeaderCellDef>#</mat-header-cell>
-        <mat-cell *matCellDef="let account; let i = index">{{i + 1}}</mat-cell>
-      </ng-container>
+      <mat-table #table [dataSource]="accountsDataSource">
+        <ng-container matColumnDef="id">
+          <mat-header-cell *matHeaderCellDef>#</mat-header-cell>
+          <mat-cell *matCellDef="let account; let i = index">{{i + 1}}</mat-cell>
+        </ng-container>
 
-      <ng-container matColumnDef="iban">
-        <mat-header-cell *matHeaderCellDef>Iban</mat-header-cell>
-        <mat-cell *matCellDef="let account">{{account.iban}}</mat-cell>
-      </ng-container>
+        <ng-container matColumnDef="iban">
+          <mat-header-cell *matHeaderCellDef>Iban</mat-header-cell>
+          <mat-cell *matCellDef="let account">{{account.iban}}</mat-cell>
+        </ng-container>
 
-      <ng-container matColumnDef="amount">
-        <mat-header-cell *matHeaderCellDef>Amount</mat-header-cell>
-        <mat-cell *matCellDef="let account">{{account.amount}} {{account.currency}}</mat-cell>
-      </ng-container>
+        <ng-container matColumnDef="amount">
+          <mat-header-cell *matHeaderCellDef>Amount</mat-header-cell>
+          <mat-cell *matCellDef="let account">{{account.amount}} {{account.currency}}</mat-cell>
+        </ng-container>
 
-      <ng-container matColumnDef="addPayment">
-        <mat-header-cell *matHeaderCellDef>New payment</mat-header-cell>
-        <mat-cell *matCellDef="let account">
-          <button (click)="openDialogNewPayment(account)" mat-button class="btn btn-primary">+</button>
-        </mat-cell>
-      </ng-container>
+        <ng-container matColumnDef="addPayment">
+          <mat-header-cell *matHeaderCellDef>New payment</mat-header-cell>
+          <mat-cell *matCellDef="let account">
+            <button (click)="openDialogNewPayment(account)" class="btn btn-primary" mat-button>+</button>
+          </mat-cell>
+        </ng-container>
 
       <ng-container matColumnDef="addMoney">
         <mat-header-cell *matHeaderCellDef>Add money</mat-header-cell>
@@ -39,6 +39,7 @@
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
       <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
 
-    </mat-table>
+      </mat-table>
+    </div>
   </div>
 </div>
