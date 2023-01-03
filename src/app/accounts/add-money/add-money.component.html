@@ -1,0 +1,21 @@
+<div class="container default-padding">
+  <div class="col1">
+    <h2>Add money into bank account</h2>
+  </div>
+
+  <form [formGroup]="addMoneyForm" (ngSubmit)="onSubmit()">
+    <div class="container" style="align-content: space-between">
+      <div>
+        <mat-form-field appearance="fill" style="margin-right: 8px">
+          <mat-label>Account:</mat-label>
+          <input type="text" matInput formControlName="iban">
+        </mat-form-field>
+        <mat-form-field appearance="fill" style="margin-right: 8px">
+          <mat-label>Enter the amount</mat-label>
+          <input type="number" matInput formControlName="amount" placeholder="100.0" required>
+        </mat-form-field>
+      </div>
+    </div>
+    <button class="btn btn-primary" type="submit">Save</button>
+  </form>
+</div>
