@@ -24,6 +24,6 @@ export class BankAccountService {
   }
 
   updateAccountAmount(iban: string, body: any): Observable<BankAccountDto> {
-    return this.http.patch<BankAccountDto>(URL.ACCOUNT_URL + '/' + iban, body, httpOptions);
+    return this.http.post<BankAccountDto>(URL.ACCOUNT_URL + '/' + iban, body, httpOptions);
   }
 }
