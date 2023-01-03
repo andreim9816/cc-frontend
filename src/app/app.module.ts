@@ -24,6 +24,7 @@ import {RegisterComponent} from "./register/register.component";
 import {AccountsComponent} from "./accounts/accounts.component";
 import {CreateAccountDialogComponent} from "./accounts/create-account-dialog/create-account-dialog.component";
 import {CreatePaymentComponent} from "./payment/create-payment/create-payment.component";
+import { AddMoneyComponent } from './accounts/add-money/add-money.component';
 import {MatDividerModule} from "@angular/material/divider";
 import {ErrorDialogComponent} from './util/error-dialog/error-dialog.component';
 
@@ -37,6 +38,7 @@ import {ErrorDialogComponent} from './util/error-dialog/error-dialog.component';
     CreateAccountDialogComponent,
     CreatePaymentComponent,
     RegisterComponent,
+    AddMoneyComponent,
     ErrorDialogComponent
   ],
   imports: [

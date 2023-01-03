@@ -22,4 +22,8 @@ export class BankAccountService {
   getUserBankAccounts(): Observable<[BankAccountDto]> {
     return this.http.get<[BankAccountDto]>(URL.ACCOUNT_URL, httpOptions);
   }
+
+  updateAccountAmount(iban: string, body: any): Observable<BankAccountDto> {
+    return this.http.post<BankAccountDto>(URL.ACCOUNT_URL + '/' + iban, body, httpOptions);
+  }
 }

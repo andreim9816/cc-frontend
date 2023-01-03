@@ -29,8 +29,15 @@
           </mat-cell>
         </ng-container>
 
-        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-        <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+      <ng-container matColumnDef="addMoney">
+        <mat-header-cell *matHeaderCellDef>Add money</mat-header-cell>
+        <mat-cell *matCellDef="let account">
+          <button (click)="openDialogAddAmount(account)" mat-button class="btn btn-primary">+</button>
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
 
       </mat-table>
     </div>
