@@ -22,7 +22,6 @@ export class CreatePaymentComponent implements OnInit {
   }
 
   createForm(data: BankAccountDto): void {
-    console.log(data);
     this.paymentForm = this.fb.group({
       ibanFromCtrl: [{value: data.iban, disabled: true}, Validators.required],
       ibanToCtrl: [null, Validators.required],
