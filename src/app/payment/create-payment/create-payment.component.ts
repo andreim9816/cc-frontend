@@ -39,10 +39,14 @@ export class CreatePaymentComponent implements OnInit {
       const body = {
         ibanTo: this.paymentForm.value.ibanToCtrl,
         ibanFrom: this.data.iban,
-        amount: this.paymentForm.value.amountCtrl,
-        currency: this.data.currency
+        currency: this.data.currency,
+        amount: this.paymentForm.value.amountCtrl
       }
       console.log(body);
+
+      this.paymentService.createPayment(body).subscribe(() => {
+        window.location.reload();
+      });
     }
   }
 
