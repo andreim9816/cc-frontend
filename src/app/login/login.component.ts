@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {AuthService} from "../services/AuthService";
 import {StorageService} from "../services/StorageService";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
@@ -10,7 +10,7 @@ import {Router} from "@angular/router";
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
 
   loginForm: FormGroup;
   isLoggedIn = false;
@@ -23,15 +23,6 @@ export class LoginComponent implements OnInit {
               private storageService: StorageService,
               private router: Router) {
     this.createForm();
-  }
-
-  ngOnInit(): void {
-    console.log('LOGIN');
-    // if (this.storageService.getToken()) {
-    //   console.log("IS LOGGED IN");
-    //   this.isLoggedIn = true;
-    //   this.roles = this.storageService.getUser().roles;
-    // }
   }
 
   createForm(): void {
@@ -50,7 +41,6 @@ export class LoginComponent implements OnInit {
 
       this.authService.loginUser(body).subscribe(
         (userDto: UserDto) => {
-          console.log(userDto);
           this.storageService.saveUser(userDto);
 
           this.isLoginFailed = false;
@@ -59,7 +49,6 @@ export class LoginComponent implements OnInit {
           this.router.navigate(['/accounts']);
         },
         err => {
-          console.log(err);
           this.errorMessage = err.error.message;
           this.isLoginFailed = true;
         }

@@ -45,14 +45,12 @@ export class RegisterComponent {
       };
 
       this.authService.register(body).subscribe(res => {
-        console.log(res);
         this.router.navigate(['/login']);
       }, err => this.openDialogError(err));
     }
   }
 
   openDialogError(error: ErrorMessage): void {
-    console.log(error);
     const dialog = this.dialog.open(ErrorDialogComponent, {data: error.error.message});
     setTimeout(() => dialog.close(), 5000);
   }

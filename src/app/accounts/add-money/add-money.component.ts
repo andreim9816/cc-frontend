@@ -1,8 +1,10 @@
 import {Component, Inject} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {BankAccountService} from "../../services/BankAccountService";
-import {MAT_DIALOG_DATA} from "@angular/material/dialog";
+import {MAT_DIALOG_DATA, MatDialog} from "@angular/material/dialog";
 import {BankAccountDto} from "../../model/BankAccountDto";
+import {ErrorMessage} from "../../model/ErrorMessage";
+import {ErrorDialogComponent} from "../../util/error-dialog/error-dialog.component";
 
 @Component({
   selector: 'app-add-money',
@@ -13,6 +15,7 @@ export class AddMoneyComponent {
   addMoneyForm: FormGroup;
 
   constructor(private fb: FormBuilder,
+              public dialog: MatDialog,
               private bankAccountService: BankAccountService,
               @Inject(MAT_DIALOG_DATA) public data: BankAccountDto) {
     this.createForm(data);
@@ -26,7 +29,6 @@ export class AddMoneyComponent {
   }
 
   onSubmit(): void {
-    console.log(this.addMoneyForm)
     if (this.addMoneyForm.valid) {
       const iban = this.data.iban
       const body = {
@@ -34,8 +36,12 @@ export class AddMoneyComponent {
       }
       this.bankAccountService.updateAccountAmount(iban, body).subscribe(() => {
         window.location.reload();
-      });
-      console.log(body);
+      }, err => this.openDialogError(err));
     }
+  }
+
+  openDialogError(error: ErrorMessage): void {
+    const dialog = this.dialog.open(ErrorDialogComponent, {data: error.error.message});
+    setTimeout(() => dialog.close(), 5000);
   }
 }
