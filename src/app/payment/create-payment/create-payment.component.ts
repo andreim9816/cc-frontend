@@ -1,9 +1,11 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {HttpClient} from "@angular/common/http";
-import {MAT_DIALOG_DATA} from "@angular/material/dialog";
+import {MAT_DIALOG_DATA, MatDialog} from "@angular/material/dialog";
 import {BankAccountDto} from "../../model/BankAccountDto";
 import {PaymentService} from "../../services/PaymentService";
+import {ErrorMessage} from "../../model/ErrorMessage";
+import {ErrorDialogComponent} from "../../util/error-dialog/error-dialog.component";
 
 @Component({
   selector: 'app-create-payment',
@@ -16,6 +18,7 @@ export class CreatePaymentComponent implements OnInit {
 
   constructor(private fb: FormBuilder, private http: HttpClient,
               private paymentService: PaymentService,
+              public dialog: MatDialog,
               @Inject(MAT_DIALOG_DATA) public data: BankAccountDto) {
     this.createForm(data);
   }
@@ -46,7 +49,7 @@ export class CreatePaymentComponent implements OnInit {
 
       this.paymentService.createPayment(body).subscribe(() => {
         window.location.reload();
-      });
+      }, err => this.openDialogError(err));
     }
   }
 
@@ -57,6 +60,12 @@ export class CreatePaymentComponent implements OnInit {
       }
     }
     return null;
+  }
+
+  openDialogError(error: ErrorMessage): void {
+    console.log(error);
+    const dialog = this.dialog.open(ErrorDialogComponent, {data: error.error.message});
+    setTimeout(() => dialog.close(), 5000);
   }
 
 }
