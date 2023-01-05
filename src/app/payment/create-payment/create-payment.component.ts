@@ -1,8 +1,11 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {HttpClient} from "@angular/common/http";
-import {MAT_DIALOG_DATA} from "@angular/material/dialog";
+import {MAT_DIALOG_DATA, MatDialog} from "@angular/material/dialog";
 import {BankAccountDto} from "../../model/BankAccountDto";
+import {PaymentService} from "../../services/PaymentService";
+import {ErrorMessage} from "../../model/ErrorMessage";
+import {ErrorDialogComponent} from "../../util/error-dialog/error-dialog.component";
 
 @Component({
   selector: 'app-create-payment',
@@ -14,6 +17,8 @@ export class CreatePaymentComponent implements OnInit {
   paymentForm: FormGroup;
 
   constructor(private fb: FormBuilder, private http: HttpClient,
+              private paymentService: PaymentService,
+              public dialog: MatDialog,
               @Inject(MAT_DIALOG_DATA) public data: BankAccountDto) {
     this.createForm(data);
   }
@@ -25,20 +30,25 @@ export class CreatePaymentComponent implements OnInit {
     this.paymentForm = this.fb.group({
       ibanFromCtrl: [{value: data.iban, disabled: true}, Validators.required],
       ibanToCtrl: [null, Validators.required],
-      amountCtrl: [{value: null, disabled: false}, [Validators.required, this.numberValidator]],
+      amountCtrl: [null, [Validators.required, this.numberValidator]],
       currencyCtrl: [{value: data.currency, disabled: true}, Validators.required],
     });
   }
 
   onSubmit(): void {
     if (this.paymentForm.valid) {
+      console.log(this.paymentForm)
       const body = {
         ibanTo: this.paymentForm.value.ibanToCtrl,
-        ibanFrom: this.paymentForm.value.ibanFromCtrl,
-        amount: this.paymentForm.value.amount,
-        currency: this.paymentForm.value.currency,
+        ibanFrom: this.data.iban,
+        currency: this.data.currency,
+        amount: this.paymentForm.value.amountCtrl
       }
       console.log(body);
+
+      this.paymentService.createPayment(body).subscribe(() => {
+        window.location.reload();
+      }, err => this.openDialogError(err));
     }
   }
 
@@ -49,6 +59,12 @@ export class CreatePaymentComponent implements OnInit {
       }
     }
     return null;
+  }
+
+  openDialogError(error: ErrorMessage): void {
+    console.log(error);
+    const dialog = this.dialog.open(ErrorDialogComponent, {data: error.error.message});
+    setTimeout(() => dialog.close(), 5000);
   }
 
 }
