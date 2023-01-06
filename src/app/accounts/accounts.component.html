@@ -14,7 +14,9 @@
 
         <ng-container matColumnDef="iban">
           <mat-header-cell *matHeaderCellDef>Iban</mat-header-cell>
-          <mat-cell *matCellDef="let account">{{account.iban}}</mat-cell>
+          <mat-cell *matCellDef="let account">
+            <button (click)="openPayments(account)" mat-button class="btn btn-primary">{{account.iban}}</button>
+          </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="amount">
