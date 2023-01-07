@@ -2,11 +2,18 @@
 
 FROM node:alpine AS banking-gui-build
 WORKDIR /app
-COPY . .
-RUN npm ci && npm run build
+
+COPY package*.json /app/
+RUN npm install
+COPY ./ /app/
+ARG configuration=production
+RUN npm run build -- --output-path=./dist/out --configuration $configuration
+
 
 # stage 2
 
 FROM nginx:alpine
-COPY --from=banking-gui-build /app/dist/banking-gui /usr/share/nginx/html
-EXPOSE 80
+#Copy ci-dashboard-dist
+COPY --from=banking-gui-build /app/dist/out/ /usr/share/nginx/html
+#Copy default nginx configuration
+COPY ./nginx-custom.conf /etc/nginx/conf.d/default.conf
