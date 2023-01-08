@@ -1,0 +1,40 @@
+<div class="container">
+    <div class="outline-box" style="margin-top: 32px">
+
+      <mat-table #table [dataSource]="paymentsDataSource">
+        <ng-container matColumnDef="id">
+          <mat-header-cell *matHeaderCellDef>#</mat-header-cell>
+          <mat-cell *matCellDef="let payment; let i = index">{{i + 1}}">{{i}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="ibanFrom">
+          <mat-header-cell *matHeaderCellDef>Iban From</mat-header-cell>
+          <mat-cell *matCellDef="let payment">{{payment.ibanFrom}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="date">
+          <mat-header-cell *matHeaderCellDef>Date</mat-header-cell>
+          <mat-cell *matCellDef="let payment">{{payment.timestamp| date:'MM-dd-yyyy hh:m'}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="ibanTo">
+          <mat-header-cell *matHeaderCellDef>Iban To</mat-header-cell>
+          <mat-cell *matCellDef="let payment">{{payment.ibanTo}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="amount">
+          <mat-header-cell *matHeaderCellDef>Amount</mat-header-cell>
+          <mat-cell *matCellDef="let payment">{{payment.amount}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="currency">
+          <mat-header-cell *matHeaderCellDef>Currency</mat-header-cell>
+          <mat-cell *matCellDef="let payment">{{payment.currency}}</mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+
+      </mat-table>
+  </div>
+</div>

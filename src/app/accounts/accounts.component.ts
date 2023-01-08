@@ -7,6 +7,9 @@ import {MatTableDataSource} from "@angular/material/table";
 import {BankAccountDto} from "../model/BankAccountDto";
 import {CreatePaymentComponent} from "../payment/create-payment/create-payment.component";
 import {AddMoneyComponent} from "./add-money/add-money.component";
+import {GetPaymentsComponent} from "../payment/get-payments/get-payments.component";
+import {Router} from "@angular/router";
+import {StorageService} from "../services/StorageService";
 
 @Component({
   selector: 'app-accounts',
@@ -25,7 +28,10 @@ export class AccountsComponent implements OnInit {
   accountsDataSource: MatTableDataSource<BankAccountDto> = new MatTableDataSource<BankAccountDto>();
   readonly displayedColumns = ['id', 'iban', 'amount', 'addPayment', 'addMoney'];
 
-  constructor(private accountService: BankAccountService, public dialog: MatDialog) {
+  constructor(private accountService: BankAccountService,
+              private router: Router,
+              private storageService: StorageService,
+              public dialog: MatDialog) {
   }
 
   ngOnInit(): void {
@@ -48,6 +54,16 @@ export class AccountsComponent implements OnInit {
     this.dialog.open(AddMoneyComponent, {
       data: account
     })
+  }
+
+  isLoggedIn(): boolean {
+    return this.storageService.isLoggedIn();
+  }
+
+  openPayments(account: BankAccountDto): void {
+    console.log("in open payments")
+    if(this.storageService.isLoggedIn())
+      this.router.navigate(['/accounts', account.iban])
   }
 
   shouldDisplay(): boolean {

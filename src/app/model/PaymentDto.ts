@@ -3,4 +3,5 @@ export interface PaymentDto {
   ibanFrom: string;
   currency: string;
   amount: number;
+  timestamp: number;
 }
