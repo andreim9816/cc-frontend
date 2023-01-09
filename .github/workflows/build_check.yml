@@ -1,0 +1,33 @@
+# This workflow will build a Java project with Maven, and cache/restore any dependencies to improve the workflow execution time
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-java-with-maven
+
+# This workflow uses actions that are not certified by GitHub.
+# They are provided by a third-party and are governed by
+# separate terms of service, privacy policy, and support
+# documentation.
+
+name: CI with node
+
+on:
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout ✅
+        uses: actions/checkout@v2
+
+      - name: Setup 🏗
+        uses: actions/setup-node@v2
+        with:
+          node-version: lts/*
+          cache: 'npm'
+
+      - name: Install
+        run: npm install
+
+      - name: Build 🛠
+        run: npm run build
+
