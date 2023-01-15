@@ -61,9 +61,8 @@ export class CreatePaymentComponent implements OnInit {
     return null;
   }
 
-  openDialogError(error: ErrorMessage): void {
-    console.log(error);
-    const dialog = this.dialog.open(ErrorDialogComponent, {data: error.error.message});
+  openDialogError(messageError: ErrorMessage): void {
+    const dialog = this.dialog.open(ErrorDialogComponent, {data: messageError.error});
     setTimeout(() => dialog.close(), 5000);
   }
 

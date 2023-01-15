@@ -2,7 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {MatTableDataSource} from "@angular/material/table";
 import {PaymentDto} from "../../model/PaymentDto";
 import {BankAccountService} from "../../services/BankAccountService";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
+import {StorageService} from "../../services/StorageService";
 
 @Component({
   selector: 'app-get-payments',
@@ -17,7 +18,9 @@ export class GetPaymentsComponent implements OnInit {
 
   constructor(
     private accountService: BankAccountService,
-    private route: ActivatedRoute) {
+    private storageService: StorageService,
+    private route: ActivatedRoute,
+    private router: Router) {
   }
 
   ngOnInit(): void {
@@ -28,7 +31,9 @@ export class GetPaymentsComponent implements OnInit {
       console.log(this.iban)
       this.accountService.getPaymentsForAccount(this.iban).subscribe(payments => {
         this.paymentsDataSource.data = payments;
-        console.log(this.paymentsDataSource.data)
+      }, err => {
+        this.storageService.clearUser();
+        this.router.navigate(['/']);
       });
     })
   }

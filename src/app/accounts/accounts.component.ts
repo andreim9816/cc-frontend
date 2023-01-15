@@ -7,7 +7,6 @@ import {MatTableDataSource} from "@angular/material/table";
 import {BankAccountDto} from "../model/BankAccountDto";
 import {CreatePaymentComponent} from "../payment/create-payment/create-payment.component";
 import {AddMoneyComponent} from "./add-money/add-money.component";
-import {GetPaymentsComponent} from "../payment/get-payments/get-payments.component";
 import {Router} from "@angular/router";
 import {StorageService} from "../services/StorageService";
 
@@ -37,6 +36,9 @@ export class AccountsComponent implements OnInit {
   ngOnInit(): void {
     this.accountService.getUserBankAccounts().subscribe(bankAccounts => {
       this.accountsDataSource.data = bankAccounts;
+    }, err => {
+      this.storageService.clearUser();
+      this.router.navigate(['/']);
     });
   }
 
