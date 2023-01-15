@@ -1,5 +1,3 @@
 export interface ErrorMessage {
-  error: {
-    message: string
-  }
+  errorMessage: String;
 }

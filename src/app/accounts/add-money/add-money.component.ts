@@ -3,7 +3,6 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {BankAccountService} from "../../services/BankAccountService";
 import {MAT_DIALOG_DATA, MatDialog} from "@angular/material/dialog";
 import {BankAccountDto} from "../../model/BankAccountDto";
-import {ErrorMessage} from "../../model/ErrorMessage";
 import {ErrorDialogComponent} from "../../util/error-dialog/error-dialog.component";
 
 @Component({
@@ -40,8 +39,8 @@ export class AddMoneyComponent {
     }
   }
 
-  openDialogError(messageError: ErrorMessage): void {
-    const dialog = this.dialog.open(ErrorDialogComponent, {data: messageError.error});
+  openDialogError(error: any): void {
+    const dialog = this.dialog.open(ErrorDialogComponent, {data: error.error.errorMessage});
     setTimeout(() => dialog.close(), 5000);
   }
 }

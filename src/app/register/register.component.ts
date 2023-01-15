@@ -4,7 +4,6 @@ import {AuthService} from "../services/AuthService";
 import {Router} from "@angular/router";
 import {MatDialog} from "@angular/material/dialog";
 import {ErrorDialogComponent} from "../util/error-dialog/error-dialog.component";
-import {ErrorMessage} from "../model/ErrorMessage";
 
 @Component({
   selector: 'app-register',
@@ -50,8 +49,8 @@ export class RegisterComponent {
     }
   }
 
-  openDialogError(messageError: ErrorMessage): void {
-    const dialog = this.dialog.open(ErrorDialogComponent, {data: messageError.error});
+  openDialogError(error: any): void {
+    const dialog = this.dialog.open(ErrorDialogComponent, {data: error.error.errorMessage});
     setTimeout(() => dialog.close(), 5000);
   }
 }

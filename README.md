@@ -11,7 +11,7 @@ the target port (`target: 'http://localhost:<NEW_PORT>'`)
 
 # Production development
 
-Gui can be found here: http://34.133.193.155:80
+Gui can be found here: http://34.172.253.150
 
 Or else:
 
