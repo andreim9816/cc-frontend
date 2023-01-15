@@ -40,8 +40,8 @@ export class AddMoneyComponent {
     }
   }
 
-  openDialogError(error: ErrorMessage): void {
-    const dialog = this.dialog.open(ErrorDialogComponent, {data: error.error.message});
+  openDialogError(messageError: ErrorMessage): void {
+    const dialog = this.dialog.open(ErrorDialogComponent, {data: messageError.error});
     setTimeout(() => dialog.close(), 5000);
   }
 }
